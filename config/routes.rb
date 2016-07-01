@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'storage#index'
+  root to: 'posts#index'
 
-  resources :storage, only: %i[index create]
+  resources :posts, only: %i[index create]
   resources :search, only: %i[index]
 end

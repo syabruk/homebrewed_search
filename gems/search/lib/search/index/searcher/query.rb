@@ -26,7 +26,7 @@ module Search
       end
 
       def select_closure
-        "#{model.table_name}.*, COUNT(#{model.table_name}.id) AS rank"
+        "#{model.table_name}.*, COUNT(#{model.table_name}.id) AS rank, ARRAY_AGG(#{tokens_table}.matched_string) AS highlights"
       end
 
       def join_closure

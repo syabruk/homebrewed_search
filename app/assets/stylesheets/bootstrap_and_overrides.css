@@ -2,3 +2,11 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+#search-form .form-control {
+  margin-right: 10px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}

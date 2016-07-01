@@ -1,0 +1,3 @@
+= form_for SearchForm.new(params[:search]), url: search_index_path, method: :get, html: { id: 'search-form', class: 'form-inline pull-xs-right' } do |f|
+  = f.text_field :query, class: 'form-control', placeholder: 'Query'
+  = f.button 'Search', class: 'btn btn-success-outline'
