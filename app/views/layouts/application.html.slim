@@ -1,0 +1,21 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    title= content_for?(:title) ? yield(:title) : "Homebrewed Search"
+    = csrf_meta_tags
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+
+  body
+    .container
+      nav.navbar.navbar-light.bg-faded
+        #navbar-header
+          = link_to 'Homebrewed Search', root_url, class: 'navbar-brand'
+          
+          = form_for SearchForm.new(params[:search]), url: search_index_path, method: :get, html: { class: 'form-inline pull-xs-right' } do |f|
+            = f.text_field :query, class: 'form-control', placeholder: 'Query'
+            = f.button 'Search', class: 'btn btn-success-outline'
+
+      .container
+        = yield

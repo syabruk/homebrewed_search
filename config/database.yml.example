@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+
+development:
+  <<: *default
+  database: homebrewed_search_development
+
+test:
+  <<: *default
+  database: homebrewed_search_test
+
+production:
+  <<: *default
+  database: homebrewed_search_production
+  username: homebrewed_search
+  password: <%= ENV['HOMEBREWED_SEARCH_DATABASE_PASSWORD'] %>
