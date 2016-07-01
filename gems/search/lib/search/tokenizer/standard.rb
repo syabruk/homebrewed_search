@@ -8,7 +8,7 @@ module Search
     perform do |string_or_tokens|
       flat_map_tokens(string_or_tokens) do |token|
         token.term.split(regexp).map do |new_term|
-          Token.new(term: new_term, matched_string: token.matched_string)
+          Token.new(term: new_term, matched_string: new_term)
         end
       end
     end
