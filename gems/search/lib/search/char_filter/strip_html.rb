@@ -5,7 +5,7 @@ module Search
     include Performing
 
     perform do |tokens|
-      tokens.map do |token|
+      tokens.each do |token|
         token.term = ActionView::Base.full_sanitizer.sanitize(token.term)
       end
     end

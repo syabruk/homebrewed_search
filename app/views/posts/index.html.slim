@@ -1,5 +1,5 @@
 .row
   .col-xs-8
-    = render 'posts'
+    = react_component 'PostsContainer', { postsPath: posts_path(:json) }
   .col-xs-4
     = render 'post_form'

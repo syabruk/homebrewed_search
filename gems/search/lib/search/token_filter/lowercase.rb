@@ -3,7 +3,7 @@ module Search
     include Performing
 
     perform do |tokens|
-      tokens.map do |token|
+      tokens.each do |token|
         token.term.downcase!
       end
     end

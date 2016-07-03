@@ -5,7 +5,7 @@ module Search
     include Performing
 
     perform do |tokens|
-      tokens.map do |token|
+      tokens.each do |token|
         token.term = Lingua.stemmer(token.term)
       end
     end
