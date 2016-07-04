@@ -11,4 +11,9 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'activerecord-import'
   s.add_runtime_dependency 'ruby-stemmer'
   s.add_runtime_dependency 'ngram'
+
+  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'rails', '~> 5.0'
+  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'pg'
 end
