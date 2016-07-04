@@ -7,6 +7,8 @@ module Search
 
       module ClassMethods
         def index!(record_or_ids=nil)
+          return unless Search.enabled?
+
           scope = scope_for_index(record_or_ids)
           transaction do
             purge_tokens(scope)
@@ -17,6 +19,8 @@ module Search
         end
 
         def delete!(record_or_ids=nil)
+          return unless Search.enabled?
+
           scope = scope_for_index(record_or_ids)
           transaction { purge_tokens(scope) }
         end

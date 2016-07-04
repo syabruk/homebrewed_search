@@ -12,7 +12,7 @@ module Search
 
       module ClassMethods
         def text_field(field, options={})
-          self._fields[field] = OptionsParser.parse(options)
+          self._fields[field] = OptionsParser.new(options).parse
         end
 
         def indexed_fields

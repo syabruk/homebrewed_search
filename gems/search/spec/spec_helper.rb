@@ -6,6 +6,8 @@ end
 require 'active_record'
 require 'database_cleaner'
 require 'rails'
+require 'shoulda-matchers'
+require 'rspec/its'
 
 require 'search'
 

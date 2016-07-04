@@ -9,6 +9,12 @@ require_dependency 'search/engine' if defined?(Rails)
 
 module Search
   class << self
+    def configuration
+      Search::Configuration.instance
+    end
+
+    delegate *Search::Configuration.delegated, to: :configuration
+
     def repository
       Search::Repository.instance
     end
@@ -25,6 +31,13 @@ module Search
       searches_for_model(record.class).map do |search|
         search.delete!(record)
       end
+    end
+
+    def without_indexing
+      disable_indexing!
+      yield
+    ensure
+      enable_indexing!
     end
   end
 end
