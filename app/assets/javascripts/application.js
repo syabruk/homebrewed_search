@@ -9,5 +9,7 @@
 //= require lodash.min
 //= require react
 //= require react_ujs
+//= require tether.min
+//= require bootstrap.min
 //= require components
 //= require_tree .

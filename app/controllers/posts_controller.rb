@@ -9,6 +9,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    render :index
+    post = Post.create!(post_params)
+    render json: post
+  end
+
+  private
+
+  def post_params
+    params[:post].permit(:title, :body)
   end
 end

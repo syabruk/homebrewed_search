@@ -8,6 +8,12 @@ class PostsContainer extends React.Component {
     this.fetchPosts();
   }
 
+  addPost(post) {
+    var posts = this.state.posts;
+    posts.push(post);
+    this.setState({posts: posts});
+  }
+
   fetchPosts(url) {
     $.ajax({
       url: url || this.props.postsPath,
@@ -37,6 +43,7 @@ class PostsContainer extends React.Component {
   render() {
     return (
       <div>
+        <Header addPost={this.addPost.bind(this)}/>
         <PostsSearch postsPath={this.props.postsPath} submitHandler={this.searchPosts.bind(this)}/>
         <Posts posts={this.state.posts} />
       </div>

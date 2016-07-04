@@ -10,11 +10,11 @@ class PostsSearch extends React.Component {
 
   render () {
 		return (
-			<div>
-				<form ref="form" action={ this.props.postsPath } acceptCharset="UTF-8" method="get">
-  				<p><input ref="query" name="query" placeholder="Search here." onChange={ this.handleChange.bind(this) } /></p>
-				</form>
-			</div>
+			<form action={ this.props.postsPath } acceptCharset="UTF-8" method="get">
+				<p>
+          <input name="query" className="form-control form-control-lg" placeholder="Search query" onChange={ this.handleChange.bind(this) } />
+        </p>
+			</form>
 		);
 	}
 }
