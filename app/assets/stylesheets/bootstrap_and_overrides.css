@@ -10,3 +10,8 @@ body {
 .navbar {
   margin-bottom: 20px;
 }
+
+mark {
+  background: orange;
+  color: black;
+}

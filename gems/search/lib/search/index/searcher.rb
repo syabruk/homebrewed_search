@@ -4,8 +4,8 @@ module Search
       extend ActiveSupport::Concern
 
       module ClassMethods
-        def search(query)
-          Query.new(searchable_model, Search::Token, query, indexed_fields).execute
+        def search(query, highlight: false)
+          Query.new(searchable_model, Search::Token, query, indexed_fields, highlight: highlight).execute
         end
       end
     end

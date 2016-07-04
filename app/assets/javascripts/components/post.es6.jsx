@@ -1,10 +1,44 @@
 class Post extends React.Component {
+  componentDidMount() {
+    this.highlight();
+  }
+
+  componentWillUnmount() {
+    this.removeHighlight();
+  }
+
+  componentDidUpdate() {
+    this.removeHighlight();
+    this.highlight();
+  }
+
+  shouldHighlight() {
+    return Array.isArray(this.props.highlights);
+  }
+
+  highlight() {
+    if (this.shouldHighlight()) {
+      this.card().mark(this.props.highlights);
+    }
+  }
+
+  removeHighlight() {
+    this.card().unmark();
+  }
+
+  card() {
+    return $('#' + this.divId())
+  }
+
+  divId() {
+    return "post_" + this.props.id
+  }
+
   render () {
     return (
-      <div className="card card-block">
+      <div className="card card-block" id={this.divId()}>
         <h4 className="card-title">{this.props.title}</h4>
         <p className="card-text">{this.props.body}</p>
-        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
       </div>
     );
   }
@@ -13,5 +47,6 @@ class Post extends React.Component {
 Post.propTypes = {
   id: React.PropTypes.number,
   title: React.PropTypes.string,
-  body: React.PropTypes.string
+  body: React.PropTypes.string,
+  highlights: React.PropTypes.array
 }

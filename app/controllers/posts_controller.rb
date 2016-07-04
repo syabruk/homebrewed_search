@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = PostsSearch.search(params[:query])
+    @posts = PostsSearch.search(params[:query], highlight: params[:query].presence)
 
     respond_to do |format|
       format.html

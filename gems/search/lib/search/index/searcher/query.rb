@@ -1,13 +1,14 @@
 module Search
   class Index
     class Searcher::Query
-      attr_reader :model, :query, :indexed_fields, :tokens_model
+      attr_reader :model, :query, :indexed_fields, :tokens_model, :highlight
 
-      def initialize(model, tokens_model, query, indexed_fields)
+      def initialize(model, tokens_model, query, indexed_fields, highlight: false)
         @model = model
         @query = query
         @indexed_fields = indexed_fields
         @tokens_model = tokens_model
+        @highlight = highlight
       end
 
       def execute
@@ -26,7 +27,9 @@ module Search
       end
 
       def select_closure
-        "#{model.table_name}.*, COUNT(#{model.table_name}.id) AS rank, ARRAY_AGG(#{tokens_table}.matched_string) AS highlights"
+        sql = "#{model.table_name}.*, COUNT(#{model.table_name}.id) AS rank"
+        sql += ", ARRAY_AGG(#{tokens_table}.matched_string) AS highlights" if highlight
+        sql
       end
 
       def join_closure

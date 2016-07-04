@@ -11,5 +11,6 @@
 //= require react_ujs
 //= require tether.min
 //= require bootstrap.min
+//= require jquery.mark.es6.min
 //= require components
 //= require_tree .
