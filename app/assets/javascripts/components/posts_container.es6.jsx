@@ -1,17 +1,16 @@
 class PostsContainer extends React.Component {
   constructor() {
-    super()
-    this.state = { posts: [] }
-    return
+    super();
+    this.state = { posts: [] };
   }
 
   componentWillMount(){
     this.fetchPosts();
   }
 
-  fetchPosts() {
+  fetchPosts(url) {
     $.ajax({
-      url: this.props.postsPath,
+      url: url || this.props.postsPath,
 
       dataType: 'json',
 
@@ -27,19 +26,8 @@ class PostsContainer extends React.Component {
 
   searchPosts(event) {
     if (event.target.value) {
-      $.ajax({
-        url: this.props.postsPath + "?query=" + event.target.value,
-
-        dataType: 'json',
-
-        success: function(data) {
-          this.setState({posts: data});
-        }.bind(this),
-
-        error: function(data) {
-          this.setState({posts: []});
-        }.bind(this)
-      });
+      var url = this.props.postsPath + "?query=" + event.target.value;
+      this.fetchPosts(url);
     }
     else{
       this.fetchPosts();
@@ -49,7 +37,7 @@ class PostsContainer extends React.Component {
   render() {
     return (
       <div>
-        <PostsSearch postsPath={this.props.postsPath} submitPath={this.searchPosts.bind(this)}/>
+        <PostsSearch postsPath={this.props.postsPath} submitHandler={this.searchPosts.bind(this)}/>
         <Posts posts={this.state.posts} />
       </div>
     );

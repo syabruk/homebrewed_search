@@ -1,4 +1,4 @@
-class PostSearch < Search::Index
+class PostsSearch < Search::Index
   model Post
 
   text_field :title,
