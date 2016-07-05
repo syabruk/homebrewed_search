@@ -18,7 +18,7 @@ class Post extends React.Component {
 
   highlight() {
     if (this.shouldHighlight()) {
-      this.card().mark(this.props.highlights);
+      this.card().mark(this.props.highlights, { accuracy: 'complementary' });
     }
   }
 
