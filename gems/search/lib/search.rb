@@ -5,6 +5,7 @@ ActiveSupport::Dependencies.autoload_paths += [__dir__]
 require_dependency 'search/index'
 require_dependency 'search/repository'
 require_dependency 'search/token'
+require_dependency 'search/apply_performers'
 require_dependency 'search/engine' if defined?(Rails)
 
 module Search

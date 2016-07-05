@@ -39,10 +39,7 @@ module Search
       def where_closure
         iterate_fields_with_tokens do |field, tokens|
           next if tokens.empty?
-          terms = tokens.map do |t|
-            term = Regexp.escape(t.term)
-            "'#{term}'"
-          end.join(', ')
+          terms = tokens_to_terms(tokens)
           "#{tokens_table}.column = '#{field}' AND #{tokens_table}.term IN (#{terms})"
         end.compact.join(' OR ')
       end
@@ -59,6 +56,14 @@ module Search
         indexed_fields.map do |field, performers|
           yield field, ApplyPerformers.new(query, performers).tokens
         end
+      end
+
+      def tokens_to_terms(tokens)
+        terms = tokens.map do |t|
+          term = Regexp.escape(t.term)
+          "'#{term}'"
+        end
+        terms.join(', ')
       end
     end
   end

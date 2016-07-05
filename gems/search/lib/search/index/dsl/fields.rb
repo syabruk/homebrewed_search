@@ -4,8 +4,6 @@ module Search
       extend ActiveSupport::Concern
 
       included do
-        include ActiveModel::Model
-
         class_attribute :_fields
         self._fields = {}
       end
