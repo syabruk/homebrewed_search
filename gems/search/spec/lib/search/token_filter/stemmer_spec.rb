@@ -1,4 +1,4 @@
-RSpec.describe Search::TokenFilter::Stremmer do
+RSpec.describe Search::TokenFilter::Stemmer do
   describe '#perform' do
     subject { described_class.execute_perform(value, {}) }
 

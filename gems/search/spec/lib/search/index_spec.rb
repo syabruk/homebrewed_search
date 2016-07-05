@@ -123,15 +123,15 @@ RSpec.describe Search::Index do
         its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Stopword, {}]] }) }
       end
 
-      context 'stremmer' do
+      context 'stemmer' do
         let(:search_class) do
           Class.new(described_class) do
             model Post
-            text_field :title, token_filter: :stremmer
+            text_field :title, token_filter: :stemmer
           end
         end
 
-        its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Stremmer, {}]] }) }
+        its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Stemmer, {}]] }) }
       end
     end
   end

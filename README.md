@@ -24,12 +24,12 @@ class PostsSearch < Search::Index
   text_field :title,
              char_filter: :phonetic,
              tokenizer: [:standard, :ngram],
-             token_filter: [:lowercase, :stopword, :stremmer]
+             token_filter: [:lowercase, :stopword, :stemmer]
 
   text_field :body,
              char_filter: [:phonetic, :strip_html],
              tokenizer: :standard,
-             token_filter: [:lowercase, :stopword, :stremmer, { length: { min: 2 } }]
+             token_filter: [:lowercase, :stopword, :stemmer, { length: { min: 2 } }]
 
   text_field :author_name, token_filter: :lowercase
 end
@@ -112,7 +112,7 @@ Filters stopwords (for example `a/the/...`) from tokens.
 text_field :stopword, token_filter: :stopword
 ```
 
-#### Stremmer
+#### Stemmer
 
 Stremms tokens.
 

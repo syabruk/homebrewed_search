@@ -1,7 +1,7 @@
 require 'lingua/stemmer'
 
 module Search
-  class TokenFilter::Stremmer
+  class TokenFilter::Stemmer
     include Performing
 
     perform do |string_or_tokens|
