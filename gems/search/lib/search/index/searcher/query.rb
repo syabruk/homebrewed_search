@@ -1,7 +1,7 @@
 module Search
   class Index
     class Searcher::Query
-      attr_reader :model, :query, :indexed_fields, :tokens_model, :highlight
+      attr_reader :model, :query, :indexed_fields, :tokens_model
 
       def initialize(model, tokens_model, query, indexed_fields, highlight: false)
         @model = model
@@ -22,22 +22,26 @@ module Search
 
       private
 
+      def model_table
+        model.table_name
+      end
+
       def tokens_table
         tokens_model.table_name
       end
 
       def select_closure
-        sql = "#{model.table_name}.*, COUNT(#{model.table_name}.id) AS rank"
-        sql += ", ARRAY_AGG(#{tokens_table}.matched_string) AS highlights" if highlight
+        sql = "#{model_table}.*, COUNT(#{model_table}.id) AS rank"
+        sql += ", ARRAY_AGG(#{tokens_table}.matched_string) AS highlights" if fetch_highlights?
         sql
       end
 
       def join_closure
-        "INNER JOIN #{tokens_table} ON #{model.table_name}.id = #{tokens_table}.document_id AND #{tokens_table}.document_type = '#{model.name}'"
+        "INNER JOIN #{tokens_table} ON #{model_table}.id = #{tokens_table}.document_id AND #{tokens_table}.document_type = '#{model.name}'"
       end
 
       def where_closure
-        iterate_fields_with_tokens do |field, tokens|
+        @where_closure ||= iterate_fields_with_tokens do |field, tokens|
           next if tokens.empty?
           terms = tokens_to_terms(tokens)
           "#{tokens_table}.column = '#{field}' AND #{tokens_table}.term IN (#{terms})"
@@ -45,7 +49,7 @@ module Search
       end
 
       def group_closure
-        "#{model.table_name}.id"
+        "#{model_table}.id"
       end
 
       def order_closure
@@ -64,6 +68,10 @@ module Search
           "'#{term}'"
         end
         terms.join(', ')
+      end
+
+      def fetch_highlights?
+        @highlight && where_closure.present?
       end
     end
   end
