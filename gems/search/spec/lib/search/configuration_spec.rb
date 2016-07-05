@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Search::Configuration do
   let(:object) { described_class.send(:new) }
 

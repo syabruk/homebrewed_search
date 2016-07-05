@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Search::Token do
   class PostsSearch < Search::Index
     model Post

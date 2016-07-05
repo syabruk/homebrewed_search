@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Search::CharFilter::StripHtml do
   describe '#perform' do
     subject { described_class.execute_perform(string, {}) }

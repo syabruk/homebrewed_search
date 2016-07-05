@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Search::Tokenizer::Ngram do
   describe '#perform' do
     subject { described_class.execute_perform(value, {}) }

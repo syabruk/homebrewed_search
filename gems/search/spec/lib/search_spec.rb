@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Search do
   class PostsSearch < Search::Index
     model Post
