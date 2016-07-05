@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   def index
-    @posts = PostsSearch.search(params[:query], highlight: params[:query].presence)
-
     respond_to do |format|
       format.html
-      format.json { render json: @posts }
+      format.json do
+        render json: search_posts
+      end
     end
   end
 
@@ -14,6 +14,14 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def search_posts
+    PostsSearch.search(params[:query], highlight: enable_highlight?)
+  end
+
+  def enable_highlight?
+    params[:query].present?
+  end
 
   def post_params
     params[:post].permit(:title, :body)

@@ -221,4 +221,33 @@ RSpec.describe Search::Index do
       end
     end
   end
+
+  describe 'applies search callbacks' do
+    let!(:search_class) do
+      Class.new(described_class) do
+        model Post
+        text_field :title
+      end
+    end
+
+    describe 'adds to index' do
+      let(:record) { Post.create(title: 'cars') }
+
+      subject { record }
+
+      specify do
+        expect { subject }.to index(record)
+      end
+    end
+
+    describe 'removes from index' do
+      let(:record) { Post.create(title: 'cars') }
+
+      subject { record.destroy }
+
+      specify do
+        expect { subject }.to delete_from_index(record)
+      end
+    end
+  end
 end

@@ -23,3 +23,13 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+  gem 'rspec-its'
+  gem 'fuubar'
+  gem 'spring-commands-rspec'
+  gem 'multi_json'
+end
