@@ -13,8 +13,10 @@ gem 'rails_12factor'
 gem 'jquery-rails'
 gem 'slim-rails'
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
 gem 'react-rails'
+gem 'sprockets-rails', require: 'sprockets/railtie'
+gem 'sprockets-es6', require: 'sprockets/es6'
+gem 'therubyracer'
 
 gem 'search', path: 'gems/search'
 
