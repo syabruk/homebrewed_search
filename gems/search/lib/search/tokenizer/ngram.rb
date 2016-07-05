@@ -6,8 +6,8 @@ module Search
 
     DEFAULTS = {
       size: 3,
-      word_separator: " ",
-      padchar: ""
+      word_separator: ' ',
+      padchar: ''
     }.freeze
 
     perform do |string_or_tokens, options|

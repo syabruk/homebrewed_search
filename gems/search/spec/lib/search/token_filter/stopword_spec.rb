@@ -17,9 +17,9 @@ RSpec.describe Search::TokenFilter::Stopword do
     end
 
     context 'with array' do
-      let(:value) { %w(TaBlE or and carpet) }
+      let(:value) { %w[TaBlE or and carpet] }
       specify do
-        expect(subject).to match_tokens({ TaBlE: :TaBlE, carpet: :carpet})
+        expect(subject).to match_tokens(TaBlE: :TaBlE, carpet: :carpet)
       end
     end
   end

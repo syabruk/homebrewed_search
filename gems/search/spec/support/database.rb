@@ -13,7 +13,7 @@ if File.exist?(database_yml)
 
   ActiveRecord::Base.establish_connection(config)
 
-  ActiveRecord::Migrator.migrate File.expand_path("../../internal/db/migrate/", __FILE__)
+  ActiveRecord::Migrator.migrate File.expand_path('../../internal/db/migrate/', __FILE__)
   Dir[File.dirname(__FILE__) + '/../internal/app/models/*.rb'].each do |model|
     load model
   end

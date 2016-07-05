@@ -1,5 +1,5 @@
 RSpec.describe Search::Configuration do
-  let(:object) { described_class.send(:new) }
+  let(:object) { described_class.__send__(:new) }
 
   it 'default state' do
     expect(object.config).to eq({})

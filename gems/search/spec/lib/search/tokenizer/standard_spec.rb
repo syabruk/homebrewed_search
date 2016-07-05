@@ -10,10 +10,10 @@ RSpec.describe Search::Tokenizer::Standard do
     end
 
     [
-      [%w(tables cars), {tables: :tables, cars: :cars}],
-      ['tables', {tables: :tables}],
-      ['table,tablets', {table: :table, tablets: :tablets}],
-      ['table tablets', {table: :table, tablets: :tablets}]
+      [%w[tables cars], { tables: :tables, cars: :cars }],
+      ['tables', { tables: :tables }],
+      ['table,tablets', { table: :table, tablets: :tablets }],
+      ['table tablets', { table: :table, tablets: :tablets }]
     ].each do |input_string, output_tokens|
       context "passed #{input_string}" do
         let(:string) { input_string }

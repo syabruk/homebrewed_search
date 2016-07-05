@@ -12,7 +12,7 @@ RSpec::Matchers.define :delete_from_index do |record|
   failure_message do
     message = "expected to #{description}"
     if @tokens_before_call.blank?
-      message += ", but there were no tokens in index"
+      message += ', but there were no tokens in index'
     end
     message
   end

@@ -15,7 +15,7 @@ module Search
         end
 
         def searchable_model
-          self._model
+          _model
         end
       end
     end

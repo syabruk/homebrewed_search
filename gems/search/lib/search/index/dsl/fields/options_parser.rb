@@ -12,13 +12,12 @@ module Search
       end
 
       def parse
-        field_options.inject(Hash.new) do |acc, (extension, performers)|
+        field_options.each_with_object({}) do |(extension, performers), acc|
           extension_module = Search.const_get(extension.to_s.classify)
           acc[extension] = Array(performers).map do |performer|
             performer_name, params = Array(performer).first
             [extension_module.const_get(performer_name.to_s.classify), params || {}]
           end
-          acc
         end
       end
     end

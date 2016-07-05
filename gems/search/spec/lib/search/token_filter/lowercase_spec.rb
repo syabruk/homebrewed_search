@@ -12,14 +12,14 @@ RSpec.describe Search::TokenFilter::Lowercase do
     context 'with string' do
       let(:string) { 'TaBlE' }
       specify do
-        expect(subject).to match_tokens({table: 'TaBlE'})
+        expect(subject).to match_tokens(table: 'TaBlE')
       end
     end
 
     context 'with array' do
-      let(:string) { %w(TaBlE CAR) }
+      let(:string) { %w[TaBlE CAR] }
       specify do
-        expect(subject).to match_tokens({table: 'TaBlE', car: 'CAR'})
+        expect(subject).to match_tokens(table: 'TaBlE', car: 'CAR')
       end
     end
   end

@@ -10,6 +10,6 @@ RSpec.describe Search::Token do
 
   describe '.table_name' do
     subject { described_class }
-    its(:table_name) { is_expected.to eq("search_tokens") }
+    its(:table_name) { is_expected.to eq('search_tokens') }
   end
 end

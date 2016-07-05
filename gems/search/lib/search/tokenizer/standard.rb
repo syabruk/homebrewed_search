@@ -15,9 +15,7 @@ module Search
       end
     end
 
-    private
-
-    def self.regexp
+    private_class_method def self.regexp
       @regexp ||= Regexp.union(PATTERNS)
     end
   end

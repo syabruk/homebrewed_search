@@ -1,8 +1,3 @@
-begin
-  require 'byebug'
-rescue LoadError
-end
-
 require 'database_cleaner'
 require 'shoulda-matchers'
 require 'rspec/its'

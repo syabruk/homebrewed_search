@@ -1,8 +1,3 @@
-begin
-  require 'byebug'
-rescue LoadError
-end
-
 require 'active_record'
 require 'database_cleaner'
 require 'rails'
@@ -27,4 +22,4 @@ RSpec.configure do |config|
   end
 end
 
-Dir[File.join(Dir.pwd, 'spec/support/**/*.rb')].sort.each{ |f| require f }
+Dir[File.join(Dir.pwd, 'spec/support/**/*.rb')].sort.each { |f| require f }

@@ -12,14 +12,14 @@ RSpec.describe Search::CharFilter::Phonetic do
     context 'with string' do
       let(:string) { 'phone quard ёшка' }
       specify do
-        expect(subject).to match_tokens({'fone kard ешка': 'phone quard ёшка'})
+        expect(subject).to match_tokens('fone kard ешка': 'phone quard ёшка')
       end
     end
 
     context 'with array' do
-      let(:string) { %w(phone quard ёшка) }
+      let(:string) { %w[phone quard ёшка] }
       specify do
-        expect(subject).to match_tokens({fone: :phone, kard: :quard, 'ешка': 'ёшка'})
+        expect(subject).to match_tokens(fone: :phone, kard: :quard, 'ешка': 'ёшка')
       end
     end
   end

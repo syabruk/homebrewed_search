@@ -12,14 +12,14 @@ RSpec.describe Search::CharFilter::StripHtml do
     context 'with string' do
       let(:string) { "<a href='google.com'>Google</a>" }
       specify do
-        expect(subject).to match_tokens({Google: "<a href='google.com'>Google</a>"})
+        expect(subject).to match_tokens(Google: "<a href='google.com'>Google</a>")
       end
     end
 
     context 'with array' do
-      let(:string) { ["<div>Car</div>", "<p>Sun</p>"] }
+      let(:string) { ['<div>Car</div>', '<p>Sun</p>'] }
       specify do
-        expect(subject).to match_tokens({Car: "<div>Car</div>", Sun: "<p>Sun</p>"})
+        expect(subject).to match_tokens(Car: '<div>Car</div>', Sun: '<p>Sun</p>')
       end
     end
   end

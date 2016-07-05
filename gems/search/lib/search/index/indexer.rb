@@ -6,7 +6,7 @@ module Search
       extend ActiveSupport::Concern
 
       module ClassMethods
-        def index!(record_or_ids=nil)
+        def index!(record_or_ids = nil)
           return unless Search.enabled?
 
           scope = scope_for_index(record_or_ids)
@@ -18,7 +18,7 @@ module Search
           end
         end
 
-        def delete!(record_or_ids=nil)
+        def delete!(record_or_ids = nil)
           return unless Search.enabled?
 
           scope = scope_for_index(record_or_ids)
@@ -30,7 +30,7 @@ module Search
         def iterate_scope(scope)
           method = scope.respond_to?(:find_each) ? :find_each : :each
 
-          scope.send(method) { |record| yield record }
+          scope.public_send(method) { |record| yield record }
         end
 
         def scope_for_index(record_or_ids)
@@ -60,7 +60,7 @@ module Search
         end
 
         def tokens_for_field(record, field, performers)
-          value = record.send(field)
+          value = record.public_send(field)
           ApplyPerformers.new(value, performers).tokens
         end
       end

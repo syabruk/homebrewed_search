@@ -42,7 +42,7 @@ module Search
           terms = tokens.map do |t|
             term = Regexp.escape(t.term)
             "'#{term}'"
-          end.join(", ")
+          end.join(', ')
           "#{tokens_table}.column = '#{field}' AND #{tokens_table}.term IN (#{terms})"
         end.compact.join(' OR ')
       end
@@ -52,7 +52,7 @@ module Search
       end
 
       def order_closure
-        "rank DESC"
+        'rank DESC'
       end
 
       def iterate_fields_with_tokens

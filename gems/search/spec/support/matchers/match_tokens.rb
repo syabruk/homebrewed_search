@@ -23,10 +23,10 @@ RSpec::Matchers.define :match_tokens do |values|
   private
 
   def calculate_difference(hash1, hash2)
-    if hash1.size > hash2.size
-      difference = hash1.to_a - hash2.to_a
+    difference = if hash1.size > hash2.size
+      hash1.to_a - hash2.to_a
     else
-      difference = hash2.to_a - hash1.to_a
+      hash2.to_a - hash1.to_a
     end
 
     Hash[*difference.flatten]

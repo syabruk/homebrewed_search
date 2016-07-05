@@ -14,7 +14,7 @@ RSpec.describe Search::Index do
 
   describe 'adds fields to index' do
     context 'without specified performers' do
-      its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Plain, {}]]} }) }
+      its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]] }) }
     end
 
     context 'with specified tokenizer' do
@@ -26,7 +26,7 @@ RSpec.describe Search::Index do
           end
         end
 
-        its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Standard, {}]]} }) }
+        its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Standard, {}]] }) }
       end
 
       context 'ngram' do
@@ -37,7 +37,7 @@ RSpec.describe Search::Index do
           end
         end
 
-        its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Ngram, {}]]} }) }
+        its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Ngram, {}]] }) }
       end
 
       context 'specified several tokenizers' do
@@ -48,7 +48,7 @@ RSpec.describe Search::Index do
           end
         end
 
-        its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Standard, {}], [Search::Tokenizer::Ngram, {}]] } }) }
+        its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Standard, {}], [Search::Tokenizer::Ngram, {}]] }) }
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe Search::Index do
           end
         end
 
-        its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Plain, {}]], char_filter: [[Search::CharFilter::Phonetic, {}]]} }) }
+        its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], char_filter: [[Search::CharFilter::Phonetic, {}]] }) }
       end
 
       context 'strip_html' do
@@ -72,7 +72,7 @@ RSpec.describe Search::Index do
           end
         end
 
-        its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Plain, {}]], char_filter: [[Search::CharFilter::StripHtml, {}]]} }) }
+        its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], char_filter: [[Search::CharFilter::StripHtml, {}]] }) }
       end
     end
 
@@ -85,7 +85,7 @@ RSpec.describe Search::Index do
           end
         end
 
-        its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Lowercase, {}]]} }) }
+        its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Lowercase, {}]] }) }
       end
 
       context 'length' do
@@ -97,7 +97,7 @@ RSpec.describe Search::Index do
             end
           end
 
-          its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Length, {}]]} }) }
+          its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Length, {}]] }) }
         end
 
         context 'with parameters' do
@@ -108,7 +108,7 @@ RSpec.describe Search::Index do
             end
           end
 
-          its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Length, { min: 2, max: 3 }]]} }) }
+          its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Length, { min: 2, max: 3 }]] }) }
         end
       end
 
@@ -120,7 +120,7 @@ RSpec.describe Search::Index do
           end
         end
 
-        its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Stopword, {}]]} }) }
+        its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Stopword, {}]] }) }
       end
 
       context 'stremmer' do
@@ -131,7 +131,7 @@ RSpec.describe Search::Index do
           end
         end
 
-        its(:indexed_fields) { is_expected.to eq({ title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Stremmer, {}]]} }) }
+        its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Stremmer, {}]] }) }
       end
     end
   end

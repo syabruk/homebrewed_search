@@ -13,13 +13,13 @@ module Search
       Search::Configuration.instance
     end
 
-    delegate *Search::Configuration.delegated, to: :configuration
+    delegate(*Search::Configuration.delegated, to: :configuration)
 
     def repository
       Search::Repository.instance
     end
 
-    delegate *Search::Repository.delegated, to: :repository
+    delegate(*Search::Repository.delegated, to: :repository)
 
     def index!(record)
       searches_for_model(record.class).map do |search|

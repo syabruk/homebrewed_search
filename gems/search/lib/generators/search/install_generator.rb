@@ -9,7 +9,7 @@ module Search
       source_root File.expand_path('../templates', __FILE__)
 
       def generate_migration
-        migration_template "migration.rb.erb", "db/migrate/create_search_tokens.rb"
+        migration_template 'migration.rb.erb', 'db/migrate/create_search_tokens.rb'
       end
 
       def self.next_migration_number(dir)

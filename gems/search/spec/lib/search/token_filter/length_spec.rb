@@ -4,11 +4,11 @@ RSpec.describe Search::TokenFilter::Length do
     let(:params) { {} }
 
     context 'with array' do
-      let(:value) { %w(a on the maps) }
+      let(:value) { %w[a on the maps] }
 
       context 'with default params' do
         specify do
-          expect(subject).to match_tokens({a: :a, on: :on, the: :the, maps: :maps})
+          expect(subject).to match_tokens(a: :a, on: :on, the: :the, maps: :maps)
         end
       end
 
@@ -16,7 +16,7 @@ RSpec.describe Search::TokenFilter::Length do
         let(:params) { { min: 2 } }
 
         specify do
-          expect(subject).to match_tokens({on: :on, the: :the, maps: :maps})
+          expect(subject).to match_tokens(on: :on, the: :the, maps: :maps)
         end
       end
 
@@ -24,7 +24,7 @@ RSpec.describe Search::TokenFilter::Length do
         let(:params) { { max: 3 } }
 
         specify do
-          expect(subject).to match_tokens({a: :a, on: :on, the: :the})
+          expect(subject).to match_tokens(a: :a, on: :on, the: :the)
         end
       end
 
@@ -32,7 +32,7 @@ RSpec.describe Search::TokenFilter::Length do
         let(:params) { { min: 2, max: 3 } }
 
         specify do
-          expect(subject).to match_tokens({on: :on, the: :the})
+          expect(subject).to match_tokens(on: :on, the: :the)
         end
       end
     end

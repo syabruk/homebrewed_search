@@ -17,8 +17,8 @@ RSpec.describe PostsController do
         it { expect(json.count).to eq(2) }
 
         it 'returns posts' do
-          expect(json).to include({title: 'carpets', body: nil, highlights: nil})
-          expect(json).to include({title: 'maps', body: nil, highlights: nil})
+          expect(json).to include(title: 'carpets', body: nil, highlights: nil)
+          expect(json).to include(title: 'maps', body: nil, highlights: nil)
         end
       end
 
@@ -29,8 +29,8 @@ RSpec.describe PostsController do
         it { expect(json.count).to eq(1) }
 
         it 'returns only matched posts' do
-          expect(json).not_to include({title: 'carpets', body: nil, highlights: nil})
-          expect(json).to include({title: 'maps', body: nil, highlights: ['maps']})
+          expect(json).not_to include(title: 'carpets', body: nil, highlights: nil)
+          expect(json).to include(title: 'maps', body: nil, highlights: ['maps'])
         end
       end
     end
@@ -61,7 +61,7 @@ RSpec.describe PostsController do
     end
 
     it 'returns created post' do
-      expect(json).not_to eq({title: 'carpet', body: 'car', highlights: nil})
+      expect(json).not_to eq(title: 'carpet', body: 'car', highlights: nil)
     end
   end
 end

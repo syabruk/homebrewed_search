@@ -10,16 +10,16 @@ RSpec.describe Search::Tokenizer::Plain do
     end
 
     context 'with array' do
-      let(:value) { %w(table car) }
+      let(:value) { %w[table car] }
       specify do
-        expect(subject).to match_tokens({table: :table, car: :car})
+        expect(subject).to match_tokens(table: :table, car: :car)
       end
     end
 
     context 'with string' do
       let(:value) { 'table car' }
       specify do
-        expect(subject).to match_tokens({'table car': 'table car'})
+        expect(subject).to match_tokens('table car': 'table car')
       end
     end
   end

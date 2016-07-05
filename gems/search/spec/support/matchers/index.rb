@@ -13,7 +13,7 @@ RSpec::Matchers.define :index do |record|
     if record
       "index record #{record.inspect}"
     else
-      "index any records"
+      'index any records'
     end
   end
 
