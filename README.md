@@ -1,6 +1,6 @@
 # HomebrewedSearch
 
-Blog with homebrewed Search™ gem (`./gems/search`).
+Blog with a homebrewed Search™ gem (`./gems/search`).
 
 ## Technologies
 
@@ -11,7 +11,7 @@ Blog with homebrewed Search™ gem (`./gems/search`).
 
 ## How it works?
 
-An enter point of the App is `app/controllers/posts_controller.rb`. It implements an API for ReactJS and renders a main layout.
+An enter point of the App is `app/controllers/posts_controller.rb`. It implements an API for ReactJS and renders the main layout.
 
 Search is implemented using a `search` gem. The App has defined a search class (`app/searches/posts_search.rb`) and it creates callbacks for a model that we are indexing.
 
@@ -37,7 +37,7 @@ class PostsSearch < Search::Index
 end
 ```
 
-Search™ stores tokens in a `Search::Token` model. You should run the generator to create table for it:
+Search™ stores tokens in a `Search::Token` model. You should run the generator which generates a migration to create table for it:
 
 ```sh
 bundle exec rake search:install
@@ -45,15 +45,15 @@ bundle exec rake search:install
 
 ## What is out of the box?
 
-Search™ performs each defined performer one by one in a specific order: `Tokenizers -> CharFilers -> TokenFilers`.
+Search™ performs each defined performer one by one in a specific order: `Tokenizers -> CharFilters -> TokenFilters`.
 
 ### Tokenizers
 
-Splits input string for tokens.
+Splits an input string for tokens.
 
 #### Plain
 
-Actually, does nothing. Just process a whole input string as one token.
+Actually, does nothing. Just stores a whole input string as one token.
 
 ```ruby
 text_field :body, tokenizer: :plain
@@ -62,7 +62,7 @@ This is a default tokenizer.
 
 #### Standard
 
-Splits input string by spaces and punctuation.
+Splits an input string by space and punctuation.
 
 ```ruby
 text_field :body, tokenizer: :standard
@@ -80,9 +80,9 @@ text_field :body, tokenizer: :ngram
 text_field :title, tokenizer: [{ ngram: { size: 5 } }]
 ```
 
-### CharFilers
+### CharFilters
 
-Mutates chars inside each tokens.
+Mutates chars inside each token.
 
 #### Phonetic
 
@@ -100,9 +100,9 @@ Sanitizes HTML tags from an input string.
 text_field :body, char_filer: :strip_html
 ```
 
-### TokenFiler
+### TokenFilter
 
-Mutates and filters a whole token.
+Mutates and filters whole tokens.
 
 #### Lowercase
 
@@ -141,11 +141,11 @@ text_field :title, token_filter: [{ length: { min: 2, max: 10 } }]
 
 ### You can define your own performers
 
-Each performer should have defined `perform` block and return array of `Search::Token` (`flat_map_tokens` helps you with that).
+Each performer should have defined `perform` block and return an array of `Search::Token` (`flat_map_tokens` helps you with that).
 
 ```ruby
 # lib/search/token_filter/bang.rb
-module Search::TokenFiler::Bang
+module Search::TokenFilter::Bang
   include Search::Performing
 
   perform do |string_or_tokens|
@@ -204,7 +204,7 @@ cp spec/internal/config/database.yml{.example,}
 rake
 ```
 
-Also, you can add `requre 'search/rspec'` to your own `spec_helper.rb` to enable some useful matchers:
+You can add `require 'search/rspec'` to your own `spec_helper.rb` to enable some useful matchers:
 
 ```ruby
 expect { Post.create }.to index
