@@ -77,7 +77,7 @@ Splits input string by n-length grams. It may accept additional parameters:
 
 ```ruby
 text_field :body, tokenizer: :ngram
-text_field :title, tokenizer: [{ ngram: { size: 5 } }]
+text_field :title, tokenizer: { ngram: { size: 5 } }
 ```
 
 ### CharFilters
@@ -136,7 +136,7 @@ Filters tokens by length with a given range. Possible parameters:
 
 ```ruby
 text_field :body, token_filter: :length
-text_field :title, token_filter: [{ length: { min: 2, max: 10 } }]
+text_field :title, token_filter: { length: { min: 2, max: 10 } }
 ```
 
 ### You can define your own performers
@@ -145,7 +145,7 @@ Each performer should have defined `perform` block and return an array of `Searc
 
 ```ruby
 # lib/search/token_filter/bang.rb
-module Search::TokenFilter::Bang
+class Search::TokenFilter::Bang
   include Search::Performing
 
   perform do |string_or_tokens|

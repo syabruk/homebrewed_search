@@ -101,14 +101,27 @@ RSpec.describe Search::Index do
         end
 
         context 'with parameters' do
-          let(:search_class) do
-            Class.new(described_class) do
-              model Post
-              text_field :title, token_filter: [{ length: { min: 2, max: 3 } }]
+          context 'wrapped in an array' do
+            let(:search_class) do
+              Class.new(described_class) do
+                model Post
+                text_field :title, token_filter: [{ length: { min: 2, max: 3 } }]
+              end
             end
+
+            its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Length, { min: 2, max: 3 }]] }) }
           end
 
-          its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Length, { min: 2, max: 3 }]] }) }
+          context 'not wrapped in an array' do
+            let(:search_class) do
+              Class.new(described_class) do
+                model Post
+                text_field :title, token_filter: { length: { min: 2, max: 3 } }
+              end
+            end
+
+            its(:indexed_fields) { is_expected.to eq(title: { tokenizer: [[Search::Tokenizer::Plain, {}]], token_filter: [[Search::TokenFilter::Length, { min: 2, max: 3 }]] }) }
+          end
         end
       end
 
