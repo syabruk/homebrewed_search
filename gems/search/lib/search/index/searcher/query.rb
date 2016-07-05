@@ -39,7 +39,10 @@ module Search
       def where_closure
         iterate_fields_with_tokens do |field, tokens|
           next if tokens.empty?
-          terms = tokens.map { |t| "'#{t.term}'" }.join(", ")
+          terms = tokens.map do |t|
+            term = Regexp.escape(t.term)
+            "'#{term}'"
+          end.join(", ")
           "#{tokens_table}.column = '#{field}' AND #{tokens_table}.term IN (#{terms})"
         end.compact.join(' OR ')
       end
