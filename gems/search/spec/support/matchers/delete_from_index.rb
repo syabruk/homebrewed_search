@@ -6,15 +6,15 @@ RSpec::Matchers.define :delete_from_index do |record|
   end
 
   description do
-    message = "delte record #{record.inspect} from index"
-    if @tokens_before_call.blank?
-      message += " but there were no tokens in index"
-    end
-    message
+    "delete record #{record.inspect} from index"
   end
 
   failure_message do
-    "expected to #{description}"
+    message = "expected to #{description}"
+    if @tokens_before_call.blank?
+      message += ", but there were no tokens in index"
+    end
+    message
   end
 
   failure_message_when_negated do

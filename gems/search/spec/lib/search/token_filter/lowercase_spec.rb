@@ -7,21 +7,21 @@ RSpec.describe Search::TokenFilter::Lowercase do
     context 'empty string' do
       let(:string) { '' }
       specify do
-        expect(subject).to match_tokens([])
+        expect(subject).to match_tokens({})
       end
     end
 
     context 'with string' do
       let(:string) { 'TaBlE' }
       specify do
-        expect(subject).to match_tokens(%w(table))
+        expect(subject).to match_tokens({table: 'TaBlE'})
       end
     end
 
     context 'with array' do
       let(:string) { %w(TaBlE CAR) }
       specify do
-        expect(subject).to match_tokens(%w(table car))
+        expect(subject).to match_tokens({table: 'TaBlE', car: 'CAR'})
       end
     end
   end

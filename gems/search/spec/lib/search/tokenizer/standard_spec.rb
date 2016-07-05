@@ -7,15 +7,15 @@ RSpec.describe Search::Tokenizer::Standard do
     context 'empty string' do
       let(:string) { '' }
       specify do
-        expect(subject).to match_tokens([])
+        expect(subject).to match_tokens({})
       end
     end
 
     [
-      [%w(tables cars), %w(tables cars)],
-      ['tables', %w(tables)],
-      ['table,tablets', %w(table tablets)],
-      ['table tablets', %w(table tablets)]
+      [%w(tables cars), {tables: :tables, cars: :cars}],
+      ['tables', {tables: :tables}],
+      ['table,tablets', {table: :table, tablets: :tablets}],
+      ['table tablets', {table: :table, tablets: :tablets}]
     ].each do |input_string, output_tokens|
       context "passed #{input_string}" do
         let(:string) { input_string }

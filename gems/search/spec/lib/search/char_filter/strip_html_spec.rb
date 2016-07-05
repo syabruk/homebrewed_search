@@ -7,21 +7,21 @@ RSpec.describe Search::CharFilter::StripHtml do
     context 'empty string' do
       let(:string) { '' }
       specify do
-        expect(subject).to match_tokens([])
+        expect(subject).to match_tokens({})
       end
     end
 
     context 'with string' do
       let(:string) { "<a href='google.com'>Google</a>" }
       specify do
-        expect(subject).to match_tokens(['Google'])
+        expect(subject).to match_tokens({Google: "<a href='google.com'>Google</a>"})
       end
     end
 
     context 'with array' do
       let(:string) { ["<div>Car</div>", "<p>Sun</p>"] }
       specify do
-        expect(subject).to match_tokens(%w(Car Sun))
+        expect(subject).to match_tokens({Car: "<div>Car</div>", Sun: "<p>Sun</p>"})
       end
     end
   end
