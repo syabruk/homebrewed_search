@@ -8,11 +8,13 @@ module Search
       'ё' => 'е'
     }.freeze
 
-    perform do |tokens|
-      MAPPINGS.each do |pattern, value|
-        tokens.each { |token| token.term.gsub!(pattern, value) }
+    perform do |string_or_tokens|
+      flat_map_tokens(string_or_tokens) do |token|
+        MAPPINGS.each do |pattern, value|
+          token.term.gsub!(pattern, value)
+        end
+        token
       end
-      tokens
     end
   end
 end

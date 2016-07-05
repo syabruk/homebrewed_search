@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Search::Tokenizer::Plain do
+RSpec.describe Search::TokenFilter::Lowercase do
   describe '#perform' do
     subject { described_class.execute_perform(string, {}) }
 
@@ -11,17 +11,17 @@ RSpec.describe Search::Tokenizer::Plain do
       end
     end
 
-    context 'with array' do
-      let(:string) { %w(table car) }
+    context 'with string' do
+      let(:string) { 'TaBlE' }
       specify do
-        expect(subject).to match_tokens(%w(table car))
+        expect(subject).to match_tokens(%w(table))
       end
     end
 
-    context 'with string' do
-      let(:string) { 'table' }
+    context 'with array' do
+      let(:string) { %w(TaBlE CAR) }
       specify do
-        expect(subject).to match_tokens(%w(table))
+        expect(subject).to match_tokens(%w(table car))
       end
     end
   end

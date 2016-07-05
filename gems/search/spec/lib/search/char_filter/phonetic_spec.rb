@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Search::Tokenizer::Plain do
+RSpec.describe Search::CharFilter::Phonetic do
   describe '#perform' do
     subject { described_class.execute_perform(string, {}) }
 
@@ -11,17 +11,17 @@ RSpec.describe Search::Tokenizer::Plain do
       end
     end
 
-    context 'with array' do
-      let(:string) { %w(table car) }
+    context 'with string' do
+      let(:string) { 'phone quard ёшка' }
       specify do
-        expect(subject).to match_tokens(%w(table car))
+        expect(subject).to match_tokens(['fone kard ешка'])
       end
     end
 
-    context 'with string' do
-      let(:string) { 'table' }
+    context 'with array' do
+      let(:string) { %w(phone quard ёшка) }
       specify do
-        expect(subject).to match_tokens(%w(table))
+        expect(subject).to match_tokens(%w(fone kard ешка))
       end
     end
   end

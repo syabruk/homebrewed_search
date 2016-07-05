@@ -1,5 +1,7 @@
 module Search
-  class Tokenizer::Standard < Tokenizer::Base
+  class Tokenizer::Standard
+    include Performing
+
     PATTERNS = [
       /[[:space:]]/,
       /[[:punct:]]/

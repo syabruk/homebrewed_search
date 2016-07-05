@@ -4,9 +4,10 @@ module Search
   class TokenFilter::Stremmer
     include Performing
 
-    perform do |tokens|
-      tokens.each do |token|
+    perform do |string_or_tokens|
+      flat_map_tokens(string_or_tokens) do |token|
         token.term = Lingua.stemmer(token.term)
+        token
       end
     end
   end

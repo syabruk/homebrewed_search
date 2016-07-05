@@ -1,5 +1,7 @@
 module Search
-  class Tokenizer::Plain < Tokenizer::Base
+  class Tokenizer::Plain
+    include Performing
+
     perform do |string_or_tokens|
       flat_map_tokens(string_or_tokens) do |token|
         token
